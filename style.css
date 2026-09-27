@@ -2827,7 +2827,7 @@ button {
     width: 7px;
     height: 7px;
     transform: translate(-50%, -50%);
-    border-radius: 50%;
+    border-radius: 0%;
     background: #f2e83b;
     box-shadow: 0 0 0 2px rgba(0,0,0,.55);
     transition: transform .16s ease, width .16s ease, height .16s ease;
@@ -2841,7 +2841,7 @@ button {
     height: 34px;
     transform: translate(-50%, -50%);
     border: 1px solid rgba(242,232,59,.8);
-    border-radius: 50%;
+    border-radius: 0%;
     background: rgba(242,232,59,.035);
     box-shadow:
       0 0 0 1px rgba(255,255,255,.08),
