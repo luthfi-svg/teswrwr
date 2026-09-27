@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#090909" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="LUTSAVE — simple social media downloader." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" href="/favicon.svg" />
+  <title>LUTSAVE — Social Media Downloader</title>
+
+  
+<link rel="stylesheet" href="/style.css" />
+
+  
+</head>
+
+<body>
+
+  <div class="dino-zone" id="dinoZone" aria-hidden="true">
+    <div class="dino-roamer" data-dino="0">
+      <div class="dino-shadow"></div>
+      <div class="dino">
+        <span class="dino-tail"></span>
+        <span class="dino-body"></span>
+        <span class="dino-neck"></span>
+        <span class="dino-head"><i class="dino-eye"></i><i class="dino-tooth"></i></span>
+        <span class="dino-arm dino-arm-a"></span>
+        <span class="dino-arm dino-arm-b"></span>
+        <span class="dino-leg dino-leg-a"></span>
+        <span class="dino-leg dino-leg-b"></span>
+      </div>
+    </div>
+    <div class="dino-roamer" data-dino="1">
+      <div class="dino-shadow"></div>
+      <div class="dino">
+        <span class="dino-tail"></span>
+        <span class="dino-body"></span>
+        <span class="dino-neck"></span>
+        <span class="dino-head"><i class="dino-eye"></i><i class="dino-tooth"></i></span>
+        <span class="dino-arm dino-arm-a"></span>
+        <span class="dino-arm dino-arm-b"></span>
+        <span class="dino-leg dino-leg-a"></span>
+        <span class="dino-leg dino-leg-b"></span>
+      </div>
+    </div>
+    <div class="dino-roamer" data-dino="2">
+      <div class="dino-shadow"></div>
+      <div class="dino">
+        <span class="dino-tail"></span>
+        <span class="dino-body"></span>
+        <span class="dino-neck"></span>
+        <span class="dino-head"><i class="dino-eye"></i><i class="dino-tooth"></i></span>
+        <span class="dino-arm dino-arm-a"></span>
+        <span class="dino-arm dino-arm-b"></span>
+        <span class="dino-leg dino-leg-a"></span>
+        <span class="dino-leg dino-leg-b"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-shell">
+    <main class="browser">
+
+      <header class="browser-bar">
+        <div class="brand">
+          <div class="brand-mark">LL</div>
+
+          <div class="brand-copy">
+            <strong>LUTSAVE</strong>
+            <span>SOCIAL MEDIA DOWNLOADER</span>
+          </div>
+        </div>
+
+        <div class="top-actions">
+          <div class="badge" id="platformBadge">
+            TIKTOK READY
+          </div>
+
+          <button
+            class="icon-btn"
+            id="historyBtn"
+            type="button"
+            title="Lihat riwayat"
+          >
+            ↺
+          </button>
+        </div>
+      </header>
+
+      <section class="hero">
+
+        <div class="hero-copy">
+
+          <div class="eyebrow">
+            SIMPLE. FAST. MEDIA.
+          </div>
+
+          <h1>
+            Download Easy &<br>
+            Fun Media.
+          </h1>
+
+          <p class="hero-desc">
+            Unduh video dan media sosial dalam nuansa gelap modern.
+            Interaktif, responsif, tanpa login, dengan player dan riwayat lokal.
+          </p>
+
+          <div class="hero-chip-row">
+            <span class="chip">NO LOGIN</span>
+            <span class="chip">FAST DOWNLOAD</span>
+            <span class="chip">MOBILE READY</span>
+          </div>
+
+        </div>
+
+        <div class="preview-zone">
+
+          <div class="preview-card">
+
+            <div class="preview-top">
+
+              <div class="mini-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <span>
+                MEDIA / PREVIEW
+              </span>
+
+            </div>
+
+            <div
+              class="preview-media"
+              id="heroPreview"
+            >
+
+              <div class="preview-placeholder">
+
+                <div class="big-icon">
+                  ▶
+                </div>
+
+                <strong>
+                  Drop a social link
+                </strong>
+
+                <span>
+                  Media yang berhasil ditemukan
+                  akan tampil di area preview ini.
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section class="workspace">
+
+        <div class="tabs">
+
+          <button
+            class="tab active"
+            data-platform="tiktok"
+            type="button"
+          >
+            TIKTOK
+          </button>
+
+          <button
+            class="tab"
+            data-platform="stalktt"
+            type="button"
+          >
+            STALK TIKTOK
+          </button>
+
+          <button
+            class="tab"
+            data-platform="instagram"
+            type="button"
+          >
+            INSTAGRAM
+          </button>
+
+        </div>
+
+        <div class="downloader">
+
+          <div class="section-head">
+
+            <div>
+
+              <h2 id="formTitle">
+                TikTok downloader
+              </h2>
+
+              <p id="formSubtitle">
+                Tempel link video / slide TikTok di bawah.
+              </p>
+
+            </div>
+
+            <div
+              class="status-pill"
+              id="siteStatus"
+            >
+              SYSTEM: CHECKING...
+            </div>
+
+          </div>
+
+          <form id="downloadForm">
+
+            <div class="input-row">
+
+              <div class="input-shell">
+
+                <!--
+                  PENTING:
+                  type=text sengaja digunakan sebagai default.
+                  app.js akan mengubahnya menjadi:
+                  URL untuk TikTok
+                  TEXT untuk TikTok Stalker
+                -->
+
+                <input
+                  id="urlInput"
+                  class="url-input"
+                  type="text"
+                  inputmode="text"
+                  autocomplete="off"
+                  spellcheck="false"
+                  placeholder="Masukkan link TikTok..."
+                  required
+                />
+
+                <button
+                  class="paste-btn"
+                  id="pasteBtn"
+                  type="button"
+                >
+                  PASTE
+                </button>
+
+              </div>
+
+              <button
+                class="download-btn"
+                id="downloadBtn"
+                type="submit"
+              >
+                <span class="btn-text">
+                  DOWNLOAD ↗
+                </span>
+              </button>
+
+            </div>
+
+            <div class="hint-row">
+
+              <span id="validationHint">
+                Dukung link TikTok dari tiktok.com
+                dan subdomain TikTok.
+              </span>
+
+              <span>
+                Klick tombol ini
+              </span>
+
+            </div>
+
+          </form>
+
+          <div
+            id="resultStack"
+            class="result-stack"
+          ></div>
+
+        </div>
+
+        <div
+          class="history"
+          id="historyPanel"
+        >
+
+          <div class="history-head">
+
+            <strong>
+              LOCAL HISTORY
+            </strong>
+
+            <button
+              class="history-clear"
+              id="clearHistoryBtn"
+              type="button"
+            >
+              CLEAR
+            </button>
+
+          </div>
+
+          <div
+            class="history-list"
+            id="historyList"
+          >
+
+            <div class="empty-state">
+              Belum ada riwayat.
+              Hasil download sukses akan muncul di sini.
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <footer class="footer">
+
+        <div class="footer-note">
+
+          <span class="footer-dot"></span>
+
+          <span id="footerStatus">
+            LUTSAVE SIAP MEMBANTU
+          </span>
+
+        </div>
+
+        <span>
+          © LUTSAVE
+        </span>
+
+      </footer>
+
+    </main>
+  </div>
+
+  <div class="site-notice" id="notice" role="status" aria-live="polite">
+    <span class="notice-label">ℹ️ INFORMASI</span>
+    <span class="notice-text"></span>
+  </div>
+
+  <div
+    class="broadcast-notice"
+    id="broadcastNotice"
+    aria-live="polite"
+    aria-hidden="true"
+  >
+    <span class="broadcast-label">📢 BROADCAST LUTSAVE</span>
+
+    <p
+      class="broadcast-text"
+      id="broadcastText"
+    ></p>
+
+    <span
+      class="broadcast-time"
+      id="broadcastTime"
+    ></span>
+
+    <button
+      class="broadcast-close"
+      id="broadcastClose"
+      type="button"
+      aria-label="Tutup notifikasi"
+    >
+      ×
+    </button>
+  </div>
+
+  <div
+    class="toast"
+    id="toast"
+  ></div>
+
+  <div
+    class="closed-overlay"
+    id="closedOverlay"
+    aria-hidden="true"
+  >
+
+    <div class="closed-box">
+
+      <div class="closed-icon">
+        ⛔
+      </div>
+
+      <h2>
+        Site paused.
+      </h2>
+
+      <p id="closedMessage">
+        Website sedang ditutup sementara oleh administrator.
+      </p>
+
+      <button
+        class="closed-refresh"
+        id="refreshStatusBtn"
+        type="button"
+      >
+        CHECK AGAIN ↻
+      </button>
+
+    </div>
+
+  </div>
+
+  <script>
+    (() => {
+      const zone = document.getElementById('dinoZone');
+      const roamers = [...document.querySelectorAll('.dino-roamer')];
+      if (!zone || !roamers.length) return;
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mouse = { x: innerWidth / 2, y: innerHeight / 2, active: false };
+      const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+
+      const dinoState = roamers.map((el, i) => {
+        const spacing = innerWidth / 4;
+        return {
+          el,
+          dino: el.querySelector('.dino'),
+          x: spacing * (i + 1) - 52,
+          targetX: spacing * (i + 1) - 52,
+          y: 0,
+          baseY: 0,
+          speed: 0.035 + i * 0.006,
+          nextTarget: 0,
+          phase: i * 1.7,
+          fleeing: false,
+          facing: i === 1 ? -1 : 1
+        };
+      });
+
+      function groundY() {
+        return Math.max(8, innerHeight - 76);
+      }
+
+      function pickTarget(s, now) {
+        const minX = 18;
+        const maxX = Math.max(minX, innerWidth - 122);
+        const direction = Math.random() > .5 ? 1 : -1;
+        const distance = 90 + Math.random() * 190;
+        s.targetX = clamp(s.x + direction * distance, minX, maxX);
+        s.nextTarget = now + 1800 + Math.random() * 2800;
+      }
+
+      function updateMouse(e) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        mouse.active = true;
+      }
+
+      addEventListener('pointermove', updateMouse, { passive: true });
+      addEventListener('pointerleave', () => { mouse.active = false; }, { passive: true });
+      addEventListener('resize', () => {
+        const maxX = Math.max(18, innerWidth - 122);
+        for (const s of dinoState) {
+          s.x = clamp(s.x, 18, maxX);
+          s.targetX = clamp(s.targetX, 18, maxX);
+        }
+      }, { passive: true });
+
+      function tick(now) {
+        const baseY = groundY();
+
+        for (const s of dinoState) {
+          if (reduceMotion.matches) {
+            s.x = s.targetX = clamp(s.x, 18, Math.max(18, innerWidth - 122));
+          } else {
+            const rect = s.el.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = baseY + 36;
+            const dx = cx - mouse.x;
+            const dy = cy - mouse.y;
+            const distance = Math.hypot(dx, dy);
+            const danger = 185;
+
+            if (mouse.active && distance < danger && Math.abs(dy) < 135) {
+              s.fleeing = true;
+              const away = dx >= 0 ? 1 : -1;
+              const strength = 1 - distance / danger;
+              s.targetX = clamp(s.x + away * (150 + strength * 260), 18, Math.max(18, innerWidth - 122));
+            } else {
+              s.fleeing = false;
+              if (now > s.nextTarget || Math.abs(s.targetX - s.x) < 8) pickTarget(s, now);
+            }
+
+            const easing = s.fleeing ? 0.075 : 0.028;
+            s.x += (s.targetX - s.x) * easing;
+            s.baseY = baseY;
+            s.y += (s.baseY - s.y) * 0.12;
+            s.facing = s.targetX < s.x ? -1 : 1;
+          }
+
+          s.el.style.transform = `translate3d(${s.x}px, ${s.y}px, 0)`;
+          s.dino.style.setProperty('--dino-facing', s.facing);
+          s.dino.classList.toggle('is-fleeing', s.fleeing);
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      for (const s of dinoState) {
+        s.y = s.baseY = groundY();
+        pickTarget(s, performance.now() + Math.random() * 1200);
+      }
+      requestAnimationFrame(tick);
+    })();
+
+    // Smooth cursor language: small dot + delayed ring, inspired by the reference site's quiet motion.
+    (() => {
+      if (window.matchMedia('(pointer: coarse)').matches) return;
+      const dot = document.createElement('div');
+      const ring = document.createElement('div');
+      dot.className = 'custom-cursor-dot';
+      ring.className = 'custom-cursor-ring';
+      document.body.append(dot, ring);
+
+      let mx = innerWidth / 2, my = innerHeight / 2;
+      let rx = mx, ry = my;
+      let visible = false;
+      let overInteractive = false;
+
+      addEventListener('pointermove', e => {
+        mx = e.clientX; my = e.clientY; visible = true;
+        const target = e.target.closest('a, button, input, textarea, select, [role="button"]');
+        overInteractive = !!target;
+        document.body.classList.toggle('cursor-hover', overInteractive);
+      }, { passive: true });
+      addEventListener('pointerleave', () => { visible = false; }, { passive: true });
+
+      function cursorTick() {
+        rx += (mx - rx) * 0.13;
+        ry += (my - ry) * 0.13;
+        dot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
+        ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
+        dot.style.opacity = ring.style.opacity = visible ? '1' : '0';
+        requestAnimationFrame(cursorTick);
+      }
+      cursorTick();
+    })();
+  </script>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
