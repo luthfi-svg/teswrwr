@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#090909" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="LUTSAVE — simple social media downloader." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" href="/favicon.svg" />
+  <title>LUTSAVE — Social Media Downloader</title>
+
+  
+
+
+  
+  <link rel="stylesheet" href="style-fixed.css">
+
+</head>
+
+<body>
+
+  <div class="smooth-cursor-dot" id="smoothCursorDot" aria-hidden="true"></div>
+  <div class="smooth-cursor-ring" id="smoothCursorRing" aria-hidden="true"></div>
+
+  <div class="dino-zone" id="dinoZone" aria-hidden="true">
+    <div class="dino-ground"></div>
+    <div class="dino-roamer" data-dino="1"><div class="dino"><span class="dino-tail"></span><span class="dino-body"></span><span class="dino-neck"></span><span class="dino-head"><i class="dino-eye"></i><i class="dino-tooth"></i></span><span class="dino-arm dino-arm-a"></span><span class="dino-arm dino-arm-b"></span><span class="dino-leg dino-leg-a"></span><span class="dino-leg dino-leg-b"></span></div></div>
+    <div class="dino-roamer" data-dino="2"><div class="dino"><span class="dino-tail"></span><span class="dino-body"></span><span class="dino-neck"></span><span class="dino-head"><i class="dino-eye"></i><i class="dino-tooth"></i></span><span class="dino-arm dino-arm-a"></span><span class="dino-arm dino-arm-b"></span><span class="dino-leg dino-leg-a"></span><span class="dino-leg dino-leg-b"></span></div></div>
+    <div class="dino-roamer" data-dino="3"><div class="dino"><span class="dino-tail"></span><span class="dino-body"></span><span class="dino-neck"></span><span class="dino-head"><i class="dino-eye"></i><i class="dino-tooth"></i></span><span class="dino-arm dino-arm-a"></span><span class="dino-arm dino-arm-b"></span><span class="dino-leg dino-leg-a"></span><span class="dino-leg dino-leg-b"></span></div></div>
+  </div>
+
+  <script src="/app.js" defer></script>
+
+
+\n<script>\n(() => {\n  const dot=document.getElementById('smoothCursorDot'), ring=document.getElementById('smoothCursorRing');\n  if(dot&&ring&&matchMedia('(pointer:fine)').matches){\n    let mx=innerWidth/2,my=innerHeight/2,dx=mx,dy=my,rx=mx,ry=my,visible=false;\n    const targets='a,button,input,textarea,select,[role="button"],.tab,.chip,.download-option';\n    addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;if(!visible){visible=true;dot.style.opacity='1';ring.style.opacity='1';dx=rx=mx;dy=ry=my;}const hit=e.target.closest?.(targets);dot.classList.toggle('is-hovering',!!hit);ring.classList.toggle('is-hovering',!!hit)},{passive:true});\n    addEventListener('pointerleave',()=>{dot.style.opacity='0';ring.style.opacity='0'});\n    addEventListener('pointerdown',()=>ring.classList.add('is-clicking'));addEventListener('pointerup',()=>ring.classList.remove('is-clicking'));\n    const loop=()=>{dx+=(mx-dx)*.32;dy+=(my-dy)*.32;rx+=(mx-rx)*.13;ry+=(my-ry)*.13;dot.style.transform=`translate3d(${dx}px,${dy}px,0)`;ring.style.transform=`translate3d(${rx}px,${ry}px,0)`;requestAnimationFrame(loop)};requestAnimationFrame(loop);\n  }\n})();\n(() => {\n  const roamers=[...document.querySelectorAll('.dino-roamer')]; if(roamers.length!==3)return;\n  const reduced=matchMedia('(prefers-reduced-motion:reduce)');\n  const initial=[.18,.48,.76];\n  const state=roamers.map((el,i)=>({el,x:innerWidth*initial[i],target:innerWidth*initial[i],dir:i===1?-1:1,next:performance.now()+1000+i*700,flee:0}));\n  let mx=-9999,my=-9999,last=performance.now();\n  addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY},{passive:true});\n  const choose=(s,now)=>{s.target=60+Math.random()*Math.max(80,innerWidth-120);s.dir=s.target>=s.x?1:-1;s.next=now+2600+Math.random()*2800};\n  const loop=now=>{const dt=Math.min(32,now-last);last=now;state.forEach(s=>{const cx=s.x+43,cy=innerHeight-45,ddx=cx-mx,ddy=cy-my,dist=Math.hypot(ddx,ddy);if(!reduced.matches&&dist<145){const away=ddx===0?1:Math.sign(ddx);s.target=Math.max(35,Math.min(innerWidth-100,s.x+away*(145-dist+150)));s.dir=away;s.flee=now+850;s.el.classList.add('is-fleeing')}else if(now>s.flee){s.el.classList.remove('is-fleeing');if(now>s.next||Math.abs(s.target-s.x)<8)choose(s,now)}if(!reduced.matches){const speed=s.flee>now?.22:.075;s.x+=(s.target-s.x)*Math.min(1,speed*dt)}s.x=Math.max(25,Math.min(innerWidth-105,s.x));s.el.style.transform=`translate3d(${s.x}px,0,0)`;s.el.querySelector('.dino').style.setProperty('--dino-facing',s.dir)});requestAnimationFrame(loop)};\n  addEventListener('resize',()=>state.forEach(s=>s.x=Math.max(25,Math.min(innerWidth-105,s.x))));requestAnimationFrame(loop);\n})();\n</script>\n</body>
+</html>
