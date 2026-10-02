@@ -1,4 +1,4 @@
-
+ 
 :root{
   --ink:#111111;
   --black:#080808;
@@ -2222,4 +2222,227 @@ body{
   .site-notice{width:calc(100% - 18px)}
   .site-notice .notice-label{min-height:54px}
   .site-notice .notice-text{min-height:54px;font-size:10px}
+}
+
+/* =========================================================
+   MOBILE FIX — spacing / overflow / touch layout
+   Keeps the platform transition animation unchanged.
+   ========================================================= */
+@media (max-width:900px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  .browser,.main-column,.hero,.workspace,.workspace-main,.preview-zone{min-width:0;width:100%}
+  .browser-bar{width:100%;box-sizing:border-box}
+}
+
+@media (max-width:700px){
+  .browser-bar{
+    min-height:70px;
+    padding:12px 14px;
+    gap:10px;
+  }
+
+  .top-title{min-width:0;flex:1}
+  .top-title h1{
+    font-size:18px;
+    line-height:1.05;
+    overflow-wrap:anywhere;
+  }
+  .top-kicker{font-size:7px}
+  .top-actions{flex:0 0 auto;gap:6px}
+  .icon-btn{width:36px;height:36px}
+
+  .hero-copy{
+    width:100%;
+    padding:30px 18px 34px;
+  }
+  .hero h2{
+    max-width:100%;
+    font-size:clamp(34px,10vw,42px);
+    overflow-wrap:anywhere;
+  }
+  .hero-desc{max-width:100%;font-size:11px}
+  .hero-chip-row{gap:6px}
+  .chip{max-width:100%;padding:7px 8px;font-size:8px}
+
+  .preview-zone{
+    width:100%;
+    padding:12px;
+  }
+  .preview-card{
+    width:100%;
+    min-width:0;
+    min-height:270px;
+    padding:10px;
+    box-shadow:5px 5px 0 #0a0c25;
+  }
+  .preview-media{min-height:205px}
+
+  .workspace{
+    width:100%;
+    padding:18px 12px 24px;
+    gap:16px;
+  }
+
+  /* Do not squeeze the platform tabs into two narrow columns. */
+  .tabs{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:7px;
+    width:100%;
+    margin-bottom:16px;
+  }
+  .tab,
+  .tab:last-child{
+    width:100%;
+    min-height:44px;
+    border:2px solid #464987;
+    box-shadow:2px 2px 0 #090b27;
+  }
+  .tab.active{box-shadow:3px 3px 0 #080a21}
+
+  .downloader{
+    width:100%;
+    min-width:0;
+    padding:16px;
+    box-shadow:5px 5px 0 #090b27;
+  }
+  .section-head{gap:10px;margin-bottom:15px}
+  .section-head h2{font-size:21px}
+  .section-head p{font-size:10px}
+
+  .input-row{width:100%;gap:9px}
+  .input-shell{width:100%;min-width:0;gap:7px}
+  .url-input,.paste-btn,.download-btn{min-height:50px}
+  .url-input{min-width:0;width:100%;border:2px solid #36386e}
+  .paste-btn{width:100%;min-width:0}
+  .download-btn{width:100%;padding:0 14px}
+
+  .hint-row{gap:6px;font-size:8px;line-height:1.4}
+
+  .result-stack{gap:14px;margin-top:16px}
+  .result-card{width:100%;min-width:0}
+  .result-main{gap:12px;padding:12px}
+  .cover,.cover img,.cover-fallback{min-height:210px}
+
+  .download-options{gap:8px}
+  .download-option{min-width:0;padding:9px}
+  .download-option strong{font-size:10px}
+  .download-option span{font-size:7px}
+  .open-link{padding:7px 8px}
+
+  .images-grid{gap:6px}
+
+  .history{
+    width:100%;
+    min-width:0;
+  }
+  .history-item{padding:12px}
+  .history-item strong{max-width:calc(100vw - 100px)}
+
+  .stalker-card{width:100%;min-width:0}
+
+  .site-notice{
+    left:50%;
+    bottom:14px;
+    width:calc(100% - 24px);
+    max-width:620px;
+    min-width:0;
+  }
+  .site-notice .notice-label{
+    flex:0 0 auto;
+    min-height:56px;
+    padding:0 9px;
+    font-size:8px;
+  }
+  .site-notice .notice-text{
+    min-width:0;
+    min-height:56px;
+    padding:10px 11px;
+    font-size:10px;
+    line-height:1.4;
+    overflow-wrap:anywhere;
+  }
+
+  .broadcast-notice{
+    top:12px;
+    width:calc(100% - 24px);
+    padding:13px 48px 13px 13px;
+  }
+  .broadcast-text{font-size:11px}
+  .broadcast-close{top:8px;right:8px;width:30px;height:30px}
+
+  .toast{bottom:14px;max-width:calc(100% - 24px)}
+  .closed-overlay{padding:14px}
+  .closed-box{width:100%;padding:22px 16px;box-shadow:7px 7px 0 #080a24}
+}
+
+@media (max-width:600px){
+  /* Transition: retain the original 8-column mobile sequence and eliminate
+     fractional-width seams without changing timing or animation direction. */
+  .platform-transition{
+    --block-count:8;
+    width:100vw;
+    max-width:100vw;
+  }
+  .platform-transition__blocks{
+    width:100vw;
+    grid-template-columns:repeat(8,minmax(0,1fr));
+    gap:0;
+  }
+  .platform-transition__blocks span:nth-child(n+9){display:none !important}
+  .platform-transition__blocks span{
+    width:calc(100% + 1px);
+    max-width:none;
+  }
+  .platform-transition__blocks span + span{margin-left:-1px !important}
+
+  .stalker-profile{
+    width:100%;
+    padding:13px;
+    gap:10px;
+  }
+  .stalker-avatar-wrap,.stalker-avatar{
+    width:68px;
+    height:68px;
+    flex-basis:68px;
+  }
+  .stalker-identity{min-width:0}
+  .stalker-name h3{font-size:19px;overflow-wrap:anywhere}
+  .stalker-username{font-size:9px;overflow-wrap:anywhere}
+  .stalker-identity p{font-size:10px}
+  .stalker-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .stalker-stat{padding:11px 5px}
+  .stalker-stat strong{font-size:14px}
+  .stalker-stat span{font-size:7px}
+  .stalker-actions{padding:11px 13px}
+  .stalker-open{width:100%;min-height:40px}
+}
+
+@media (max-width:460px){
+  .browser-bar{padding:11px 12px}
+  .top-title h1{font-size:17px}
+  .hero-copy{padding:27px 15px 32px}
+  .hero h2{font-size:34px;line-height:.94}
+  .preview-zone{padding:10px}
+  .preview-card{min-height:250px;padding:8px}
+  .preview-media{min-height:185px}
+
+  .workspace{padding:16px 10px 22px}
+  .downloader{padding:13px}
+  .section-head h2{font-size:19px}
+
+  .tabs{gap:6px}
+  .tab,.tab:last-child{min-height:42px}
+
+  .result-main{padding:10px}
+  .cover,.cover img,.cover-fallback{min-height:180px}
+  .downloads{padding:11px}
+  .download-options{grid-template-columns:1fr}
+  .images-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+
+  .site-notice{width:calc(100% - 20px);bottom:11px}
+  .site-notice .notice-label{min-height:52px;padding:0 7px;font-size:7px}
+  .site-notice .notice-text{min-height:52px;padding:9px 9px;font-size:9px}
+
+  .broadcast-notice{width:calc(100% - 20px)}
 }
